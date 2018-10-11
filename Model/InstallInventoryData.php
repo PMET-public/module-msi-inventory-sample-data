@@ -4,7 +4,7 @@
  * See COPYING.txt for license details.
  */
 
-namespace Magento\MsInventorySampleData\Model;
+namespace Magento\MsiInventorySampleData\Model;
 
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
@@ -15,8 +15,8 @@ use Magento\InventoryApi\Api\SourceItemsDeleteInterface;
 
 
 /**
- * Class InstallInventory
- * @package Magento\MsiLumaInventorySampleData\Setup\Patch\Data
+ * Class InstallInventoryData
+ * @package Magento\MsInventorySampleData\Model
  */
 class InstallInventoryData
 {
@@ -41,7 +41,6 @@ class InstallInventoryData
     /**
      * InstallInventoryData constructor.
      * @param SampleDataContext $sampleDataContext
-     * @param ModuleDataSetupInterface $moduleDataSetup
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param SourceItemRepositoryInterface $sourceItemRepository
      * @param SourceItemInterfaceFactory $sourceItemInterfaceFactory
@@ -50,14 +49,12 @@ class InstallInventoryData
 
     public function __construct(
         SampleDataContext $sampleDataContext,
-        ModuleDataSetupInterface $moduleDataSetup,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         SourceItemRepositoryInterface $sourceItemRepository,
         SourceItemInterfaceFactory $sourceItemInterfaceFactory,
         SourceItemsDeleteInterface $sourceItemsDelete
        )
     {
-        $this->moduleDataSetup = $moduleDataSetup;
         $this->fixtureManager = $sampleDataContext->getFixtureManager();
         $this->csvReader = $sampleDataContext->getCsvReader();
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
@@ -69,6 +66,9 @@ class InstallInventoryData
 
     /**
      * @param array $fixtures
+     * @throws \Magento\Framework\Exception\CouldNotSaveException
+     * @throws \Magento\Framework\Exception\InputException
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function addInventory(array $fixtures): void
     {
