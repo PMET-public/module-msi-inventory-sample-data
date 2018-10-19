@@ -1,4 +1,6 @@
-# module-msi-inventory-sample-data
+# Magento_MsiInventorySampleData
+
+Sample data for Magento PWA
 
 Module to support loading of sample data for Multi Source Inventory.
 
